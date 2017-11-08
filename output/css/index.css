@@ -1,0 +1,204 @@
+header,
+footer {
+  display: block;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+p,
+dl,
+dd,
+hr,
+input,
+textarea {
+  margin: 0;
+}
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+a,
+u,
+ins {
+  color: inherit;
+  text-decoration: none;
+}
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: normal;
+}
+tt,
+code,
+kbd,
+samp {
+  font-family: inherit;
+}
+b,
+strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+sup,
+sub {
+  vertical-align: baseline;
+}
+textarea {
+  resize: none;
+}
+samp,
+small {
+  font-size: inherit;
+}
+a,
+img {
+  -webkit-touch-callout: none;
+}
+img {
+  vertical-align: middle;
+}
+input,
+button,
+textarea,
+optgroup,
+select {
+  -webkit-appearance: none;
+  vertical-align: middle;
+  border-radius: 0;
+  outline: none;
+  font-size: 100%;
+}
+@font-face {
+  font-family: 'iconfont';
+  src: url('../iconfont/iconfont.eot');
+  src: url('../iconfont/iconfont.eot?#iefix') format('embedded-opentype'), url('../iconfont/iconfont.svg#iconfont') format('svg'), url('../iconfont/iconfont.ttf') format('truetype'), url('../iconfont/iconfont.woff') format('woff');
+}
+.clearfix {
+  zoom: 1;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+html {
+  font-size: 100px;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100% !important;
+  -webkit-overflow-scrolling: touch;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  font-size: .14rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, STHeiTi, sans-serif;
+  color: rgba(0, 0, 0, 0.8);
+}
+.wrapper {
+  width: 1140px;
+  margin: 0 auto;
+}
+header {
+  height: 60px;
+  background-color: #100903;
+}
+header .logo,
+header .search {
+  float: left;
+  margin-top: 15px;
+}
+header .logo {
+  color: #fff;
+  font-size: 26px;
+  font-family: Georgia;
+}
+header .logo img {
+  width: 82px;
+  height: 30px;
+}
+header .search {
+  margin-left: 50px;
+}
+header .search input {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-radius: 3px;
+  color: #fff;
+  padding: 8px 10px;
+  height: 16px;
+  line-height: 16px;
+  border: none;
+  font-size: 12px;
+  width: 130px;
+  transition: .15s ease;
+}
+header .search input:focus {
+  width: 200px;
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
+}
+header .search input::-webkit-input-placeholder {
+  color: #aaa;
+}
+header .nav {
+  float: right;
+  position: relative;
+}
+header .nav li {
+  line-height: 60px;
+  float: left;
+  margin: 0 20px;
+}
+header .nav li.line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background-color: #0f7e34;
+}
+header .nav li a {
+  display: block;
+  padding: 0 20px;
+  color: rgba(255, 255, 255, 0.7);
+  position: relative;
+}
+header .nav li a:hover {
+  color: #fff;
+}
+header .nav li a:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #f00;
+  top: 18px;
+  margin-left: 6px;
+}
+.banner {
+  height: 600px;
+  background: url(/img/banner.jpg) no-repeat center center;
+}
