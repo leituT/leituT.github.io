@@ -1,36 +1,91 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<meta charset='utf-8'>
-	<meta http-equiv="X-UA-Compatible" content="chrome=1">
-	<link rel="stylesheet" type="text/css" href="css/index.css">
-	<title>累土 by leituT</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>定位测试</title>
+  <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=DA7083bd1ccfb1cc22443f4466c1f279"></script>
+  <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=fdec17b90ec7fe3a7711c89d0a283a8c"></script>
 </head>
+
 <body>
-	<header>
-		<div class="wrapper clearfix">
-			<a href="" class="logo">
-				logo
-			</a>
-			<div class="search">
-				<input type="text" placeholder="搜索组件活模块">
-			</div>
-			<ul class="nav clearfix">
-				<li><a href="">文档</a></li>
-				<li><a href="">示例</a></li>
-				<li><a href="">社区</a></li>
-				<li><a href="">周边</a></li>
-				<li><a href="">旧版</a></li>
-				<li class="line"></li>
-			</ul>
-		</div>
-	</header>
-	<div class="container">
-	<div class="banner"></div>
-	</div>
-	<footer>
-	</footer>
-	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-	<script src="js/index.js"></script>
+  <button id="btn1">普通定位</button>
+  <p id="msg1"></p>
+  <button id="btn2">高德定位</button>
+  <p id="msg2"></p>
+  <button id="btn3">百度定位</button>
+  <p id="msg3"></p>
+  <script>
+    $(function () {
+      $("#btn1").on("click", function () {
+        var options = {
+          enableHighAccuracy: true,//开启高精度
+          maximumAge: 1000
+        }
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+        } else {
+          alert('您的浏览器不支持地理位置定位');
+        }
+        function onSuccess(data) {
+          var lo = data.coords.longitude; // 经度
+          var la = data.coords.latitude; // 纬度
+          $("#msg1").html('经度：' + lo + ',纬度:' + la);
+        }
+        function onError(error) {
+          $("#msg1").html('定位失败' + JSON.stringify(error));
+        }
+      });
+
+      $("#btn2").on("click", function () {
+        AMap.plugin("AMap.Geolocation", function () {
+          var geolocation = new AMap.Geolocation({
+            enableHighAccuracy: true, //是否使用高精度定位，默认:true
+            timeout: 15000, //超过10秒后停止定位，默认：5s
+            maximumAge: 0 // 定位结果缓存0毫秒，默认：0
+          });
+          geolocation.getCurrentPosition(function (status, result) {
+            if (status == "complete") {
+              onComplete(result);
+            } else {
+              onError(result);
+            }
+          });
+        });
+        //解析定位结果
+        function onComplete(data) {
+          $("#msg2").html(JSON.stringify(data));
+        }
+        //解析定位错误信息
+        function onError(data) {
+          $("#msg2").html('定位失败' + JSON.stringify(data));
+        }
+      })
+
+      $("#btn3").on("click", function () {
+        var geolocation = new BMap.Geolocation();
+        var gc = new BMap.Geocoder(); //地址解析类
+        geolocation.getCurrentPosition(
+          function (r) {
+            if (this.getStatus() === 0) {
+              gc.getLocation(r.point, function (rs) {
+                const addr = rs.address;
+                const lan = rs.point.lng;
+                const lat = rs.point.lat;
+                $("#msg3").html(addr + "(" + lan + "," + lat + ")");
+              });
+            } else {
+              $("#msg3").html(JSON.stringify(r));
+            }
+          },
+          { enableHighAccuracy: true, maximumAge: 0 }
+        );
+      });
+    });
+  </script>
 </body>
+
 </html>
